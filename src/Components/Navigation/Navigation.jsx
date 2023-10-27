@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useContext, useState } from "react";
 import Image1 from '../../assets/user-pic.jpg'
 import NavIcon from "./NavIconTemplate/NavIcon";
 import { BiSolidDashboard, BiMessageAltAdd, BiDotsHorizontalRounded } from 'react-icons/Bi';
@@ -9,11 +9,28 @@ import { MdOutlineNotificationsActive } from 'react-icons/Md';
 import { RiAccountCircleLine } from 'react-icons/Ri';
 import { TbFileUpload } from 'react-icons/Tb';
 import { MdSwapHoriz } from 'react-icons/Md';
+import { ThemeContext } from "../../Theme";
 
 const Navigation = () => {
+
+    const [nav, setnav] = useState(false);
+    const {DarkTheme, setDarkTheme} = useContext(ThemeContext);
+
+    const toggleNav = () =>{
+        setnav((prevState) => !prevState); 
+    }
+
+    const ChangeThemeEffect =() =>{
+        setDarkTheme(!DarkTheme)
+    }
+
     return (
-        <div className="navigation-main">
-            <div className="menu"><FiChevronLeft className="menu-icon" /></div>
+        <div className={`navigation-main ${nav && "active"} ${DarkTheme && "Dark"}`}>
+            <div
+                className={`menu ${nav && "active"}`}
+                onClick={toggleNav}>
+                <FiChevronLeft className="menu-icon" />
+            </div>
             <header>
                 <div className="profile">
                     <img
@@ -41,12 +58,11 @@ const Navigation = () => {
 
             <div className="divider"></div>
 
-            <NavIcon title="Change Theme" Icon={MdSwapHoriz} />
+            <NavIcon title={`${DarkTheme ? "Switch to    Light Theme":"Swich to Dark Theme"}`} Icon={MdSwapHoriz} onclick={ChangeThemeEffect} />
             <NavIcon title={"More Details"} Icon={BiDotsHorizontalRounded} />
 
             <svg
                 className="bg-wave"
-                preserveAspectRatio="none"
                 viewBox="0 0 1200 120"
                 xmlns="http://www.w3.org/2000/svg"
                 style={{ fill: '#ffffff', width: '289%', height: 200, transform: 'rotate(180deg)' }}

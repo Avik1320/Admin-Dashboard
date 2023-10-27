@@ -1,0 +1,44 @@
+@import '../../Abstracts/Mixin';
+
+.circular-progress{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .details{
+        position: absolute;
+        display: flex;
+        color: white;
+
+    }
+
+    svg{
+        width: 120px;
+        height: 120px;
+        translate: 3px -4px;
+        rotate: -90deg;
+
+        .svg-circle-grey{
+            stroke-width: 5;
+            fill: transparent;
+            stroke: var(--dm-stroke-clr);
+        }
+        .svg-circle{
+            stroke: var(--clr);
+            fill: transparent;
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-dasharray: 315;
+            stroke-dashoffset: 315;
+            animation: load 1s ease 1s forwards;
+        }
+    }
+
+}
+
+@keyframes load {
+    to{
+        stroke-dashoffset: var(--p);
+    }
+}

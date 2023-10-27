@@ -11,8 +11,8 @@
     background: linear-gradient(10deg, #810551, #05454d);
     padding: 5px 10px;
     background-color: red;
+    overflow: hidden;
     // padding-top: 10px;
-
     .menu{
         position: absolute;
         right: 10px;
@@ -26,6 +26,8 @@
         align-items: center;
         z-index: 1;
         cursor: pointer;
+
+
     }
     header{
         position: relative;
@@ -73,4 +75,45 @@
         width: 80%;
         background-color: rgba(255 ,255 ,255, 0.438); 
     }
+    .bg-wave{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        opacity: 0.3;   
+    }
+}
+.navigation-main.active{
+    width: max-content;
+
+    .menu{
+        position: relative;
+    }
+    header{
+        padding: 0;
+        margin-top: 10px;
+        background-color: transparent;
+
+        ::after{
+            display: none;
+        }
+        span{
+            display: none;
+        }
+        .profile{
+            height: 40px;
+        }
+    }
+    // h2{
+    //     display: none;
+    // }
+}
+.navigation-main.menu.active{
+    rotate: 180deg;
+}
+.navigation-main.active h2{
+    display: none;
+}
+.navigation-main.Dark header{
+    background-color: rgba(0, 0, 0, 0.438);
 }
