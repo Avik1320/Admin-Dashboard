@@ -1,4 +1,4 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import Image1 from '../../assets/user-pic.jpg'
 import NavIcon from "./NavIconTemplate/NavIcon";
 import { BiSolidDashboard, BiMessageAltAdd, BiDotsHorizontalRounded } from 'react-icons/Bi';
@@ -14,6 +14,8 @@ import { ThemeContext } from "../../Theme";
 const Navigation = () => {
 
     const [nav, setnav] = useState(false);
+    const [username, setusername] = useState("");
+
     const {DarkTheme, setDarkTheme} = useContext(ThemeContext);
 
     const toggleNav = () =>{
@@ -23,6 +25,11 @@ const Navigation = () => {
     const ChangeThemeEffect =() =>{
         setDarkTheme(!DarkTheme)
     }
+
+    useEffect(() => {
+      setusername(localStorage.getItem("username"))
+    }, [])
+    
 
     return (
         <div className={`navigation-main ${nav && "active"} ${DarkTheme && "Dark"}`}>
@@ -39,7 +46,7 @@ const Navigation = () => {
                         className="profile-img"
                     />
                 </div>
-                <span>Creative Ambition</span>
+                <span>{username}</span>
             </header>
 
             <NavIcon title="Dashboard" Icon={BiSolidDashboard} />
